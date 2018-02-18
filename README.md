@@ -1,2 +1,3 @@
-# java-playground
-Playground for enjoying Java code snippets
+# Java Playground
+
+A playground for enjoying Java code snippets.
