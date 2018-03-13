@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,44 +15,35 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class MessageTest {
 
-    public static class Payload implements Serializable {
+    public static final String MESSAGE_JSON_STRING = "{" +
+            "\"type\" : \"STRING\"," +
+            "\"payload\" : \"ABC\"" +
+            "}";
 
-        private String content;
-
-        public String getContent() {
-            return content;
-        }
-
-        public void setContent(final String content) {
-            this.content = content;
-        }
-    }
-
-    public static final String MESSAGE_JSON = "{" +
-            "\"type\" : \"com.github.gilbertotcc.playground.jackson.MessageTest$Payload\"," +
-            "\"payload\" : { \"content\" : " + "\"ABC\"}" +
+    public static final String MESSAGE_JSON_LONG = "{" +
+            "\"type\" : \"LONG\"," +
+            "\"payload\" : 1" +
             "}";
 
     @Test
     public void deserializeJson() throws IOException {
-        Message message = new ObjectMapper().readValue(MESSAGE_JSON, Message.class);
+        Message message = new ObjectMapper().readValue(MESSAGE_JSON_STRING, Message.class);
 
-        assertTrue(Payload.class.isInstance(message.getPayload()));
-        Payload payload = Payload.class.cast(message.getPayload());
-        assertEquals("ABC", payload.getContent());
+        assertTrue(String.class.isInstance(message.getPayload()));
+        String payload = String.class.cast(message.getPayload());
+        assertEquals("ABC", payload);
     }
 
     @Test
     public void serializeJson() throws JsonProcessingException, JSONException {
-        Payload payload = new Payload();
-        payload.setContent("ABC");
+        Long payload = Long.valueOf(1L);
 
-        Message<Payload> message = new Message<>();
+        Message<Long> message = new Message<>();
         message.setPayload(payload);
 
         String messageJson = new ObjectMapper().writeValueAsString(message);
         System.err.println(messageJson);
-        JSONAssert.assertEquals(MESSAGE_JSON, messageJson, JSONCompareMode.NON_EXTENSIBLE);
+        JSONAssert.assertEquals(MESSAGE_JSON_LONG, messageJson, JSONCompareMode.NON_EXTENSIBLE);
 
     }
 }
