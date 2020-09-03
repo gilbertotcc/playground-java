@@ -1,3 +1,16 @@
-# Java Playground
+# Java playground
 
-Main purpose of this project is to have a playground to _enjoy_ Java programming language.
+A playground project to _enjoy_ and/or practice with the Java.
+
+## Requirements
+
+- Java 14
+- Gradle
+
+## Usage
+
+To build the playground run the following command:
+
+```shell script
+$ ./gradlew build
+```
