@@ -16,9 +16,12 @@ repositories {
 }
 
 dependencies {
+  compile 'io.vavr:vavr:0.10.2'
   compile 'io.socket:socket.io-client:1.0.0'
   compile 'org.apache.commons:commons-lang3:3.7'
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
+  compileOnly 'org.projectlombok:lombok:1.18.10'
+  annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
   // TEST
   testCompile 'org.skyscreamer:jsonassert:1.5.0'
