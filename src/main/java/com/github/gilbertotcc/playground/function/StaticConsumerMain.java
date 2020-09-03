@@ -15,7 +15,10 @@ public class StaticConsumerMain {
     return "constant_method";
   }
 
-  public static void main(String args[]) {
+  /**
+   * Main function.
+   */
+  public static void main(String[] args) {
     final String constantA = CONSTANT_A;
     final String constantB = CONSTANT_B;
     System.out.println(constantA);

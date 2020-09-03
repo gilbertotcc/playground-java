@@ -16,10 +16,13 @@ public class ListPlayground {
         (accumulator, number) -> accumulator.isFailure() || number.isFailure()
           ? Try.failure(new IllegalArgumentException())
           : Try.success(accumulator.get().append(number.get()))
-        )
+      )
       .getOrElseThrow(error -> (IllegalArgumentException) error);
   }
 
+  /**
+   * Main test function.
+   */
   public static void main(String[] args) {
     try {
       System.out.println("Test with DEFAULT_LIST");

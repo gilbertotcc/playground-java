@@ -14,11 +14,12 @@ class ConditionalFunctionTest {
     final Tuple<Boolean, Boolean> input2 = new Tuple<>(Boolean.TRUE, Boolean.FALSE);
     final Tuple<Boolean, Boolean> input3 = new Tuple<>(Boolean.TRUE, Boolean.TRUE);
 
-    ConditionalFunction<Tuple<Boolean, Boolean>, Boolean> conditionalFunction = new ConditionalFunction<Tuple<Boolean, Boolean>, Boolean>()
-      .when(t -> !t.a && !t.b).thenReturn(false)
-      .when(t -> !t.a && t.b).thenReturn(Boolean.FALSE)
-      .when(t -> t.a && !t.b).thenReturn(Boolean.FALSE)
-      .when(t -> t.a && t.b).thenReturn(Boolean.TRUE);
+    ConditionalFunction<Tuple<Boolean, Boolean>, Boolean> conditionalFunction =
+      new ConditionalFunction<Tuple<Boolean, Boolean>, Boolean>()
+        .when(t -> !t.firstElement && !t.secondElement).thenReturn(false)
+        .when(t -> !t.firstElement && t.secondElement).thenReturn(Boolean.FALSE)
+        .when(t -> t.firstElement && !t.secondElement).thenReturn(Boolean.FALSE)
+        .when(t -> t.firstElement && t.secondElement).thenReturn(Boolean.TRUE);
 
     assertFalse(conditionalFunction.apply(input0));
     assertFalse(conditionalFunction.apply(input1));
@@ -27,12 +28,12 @@ class ConditionalFunctionTest {
   }
 
   private static class Tuple<A, B> {
-    A a;
-    B b;
+    A firstElement;
+    B secondElement;
 
-    public Tuple(A a, B b) {
-      this.a = a;
-      this.b = b;
+    public Tuple(A firstElement, B secondElement) {
+      this.firstElement = firstElement;
+      this.secondElement = secondElement;
     }
   }
 }

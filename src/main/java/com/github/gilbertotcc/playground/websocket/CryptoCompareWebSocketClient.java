@@ -4,12 +4,13 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.json.JSONObject;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.apache.commons.lang3.builder.ToStringStyle.JSON_STYLE;
 
 public class CryptoCompareWebSocketClient {
 
@@ -26,7 +27,8 @@ public class CryptoCompareWebSocketClient {
       System.out.println("Subscribing...");
       socket.emit("SubAdd", obj);
     })
-      .on("m", objs -> parseResponse(objs).forEach(o -> System.out.println(ReflectionToStringBuilder.toString(o, ToStringStyle.JSON_STYLE))));
+      .on("m", objs -> parseResponse(objs)
+        .forEach(o -> System.out.println(ReflectionToStringBuilder.toString(o, JSON_STYLE))));
     socket.connect();
   }
 

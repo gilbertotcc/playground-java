@@ -1,6 +1,7 @@
 plugins {
   id 'java'
   id 'idea'
+  id 'checkstyle'
   id 'com.adarshr.test-logger' version '2.1.0'
 }
 
@@ -10,18 +11,17 @@ wrapper {
 
 repositories {
   mavenLocal()
-  maven {
-    url = 'https://repo.maven.apache.org/maven2'
-  }
+  mavenCentral()
 }
 
 dependencies {
   compile 'io.vavr:vavr:0.10.3'
   compile 'io.socket:socket.io-client:1.0.0'
-  compile 'org.apache.commons:commons-lang3:3.7'
-  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
-  compileOnly 'org.projectlombok:lombok:1.18.10'
-  annotationProcessor 'org.projectlombok:lombok:1.18.10'
+  compile 'org.apache.commons:commons-lang3:3.11'
+  compile 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.1.2'
+  compileOnly 'org.projectlombok:lombok:1.18.12'
+  annotationProcessor 'org.projectlombok:lombok:1.18.2'
 
   // TEST
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
@@ -42,4 +42,17 @@ description = 'playground-java'
 
 test {
   useJUnitPlatform()
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    xml.enabled false
+    html.enabled true
+  }
+}
+
+checkstyle {
+  toolVersion = '8.36'
+  showViolations = true
+  ignoreFailures = false
 }
