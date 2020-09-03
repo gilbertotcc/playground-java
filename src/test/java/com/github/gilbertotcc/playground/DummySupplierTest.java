@@ -1,13 +1,13 @@
 package com.github.gilbertotcc.playground;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DummySupplierTest {
+class DummySupplierTest {
 
   @Test
-  public void testGetAsBooleanSuccess() {
+  void testGetAsBooleanSuccess() {
     DummySupplier s = new DummySupplier();
     assertTrue(s.getAsBoolean());
   }

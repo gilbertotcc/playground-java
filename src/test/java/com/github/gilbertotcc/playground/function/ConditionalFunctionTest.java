@@ -1,14 +1,14 @@
 package com.github.gilbertotcc.playground.function;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ConditionalFunctionTest {
+class ConditionalFunctionTest {
 
   @Test
-  public void testFalseAndFalse() {
+  void testFalseAndFalse() {
     final Tuple<Boolean, Boolean> input0 = new Tuple<>(Boolean.FALSE, Boolean.FALSE);
     final Tuple<Boolean, Boolean> input1 = new Tuple<>(Boolean.FALSE, Boolean.TRUE);
     final Tuple<Boolean, Boolean> input2 = new Tuple<>(Boolean.TRUE, Boolean.FALSE);
@@ -33,14 +33,6 @@ public class ConditionalFunctionTest {
     public Tuple(A a, B b) {
       this.a = a;
       this.b = b;
-    }
-
-    public A getA() {
-      return a;
-    }
-
-    public B getB() {
-      return b;
     }
   }
 }
