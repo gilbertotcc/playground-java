@@ -5,7 +5,9 @@ import java.util.stream.Stream;
 
 public class StreamPlayground {
 
-
+  /**
+   * Main method.
+   */
   public static void main(String[] args) {
     final Random random = new Random();
     Stream.generate(() -> random.nextLong())
