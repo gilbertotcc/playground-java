@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MessageTest {
 
   public static final String MESSAGE_JSON_STRING = "{"
-    +  "\"type\" : \"STRING\","
+    + "\"type\" : \"STRING\","
     + "\"payload\" : \"ABC\""
     + "}";
 
