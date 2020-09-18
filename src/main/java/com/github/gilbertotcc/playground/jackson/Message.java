@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.stream.Stream;
@@ -15,8 +16,8 @@ public class Message<T extends Serializable> {
 
   @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
   @JsonSubTypes({
-      @JsonSubTypes.Type(value = String.class, name = "STRING"),
-      @JsonSubTypes.Type(value = Long.class, name = "LONG")
+    @JsonSubTypes.Type(value = String.class, name = "STRING"),
+    @JsonSubTypes.Type(value = Long.class, name = "LONG")
   })
   private T payload;
 
